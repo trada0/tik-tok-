@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Loading...</title>
+
+<style>
+html,body{
+margin:0;
+padding:0;
+background:#000;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+/* container */
+.guide{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;
+padding:20px;
+}
+
+/* image box */
+.step{
+position:relative;
+max-width:320px;
+}
+
+.step img{
+width:100%;
+border-radius:12px;
+display:block;
+}
+
+/* label */
+.label{
+position:absolute;
+top:8px;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,0.7);
+color:#fff;
+padding:6px 14px;
+border-radius:999px;
+font-weight:bold;
+font-size:14px;
+}
+
+/* arrow */
+.arrow{
+color:#fff;
+font-size:36px;
+font-weight:bold;
+}
+
+/* mobile */
+@media(max-width:700px){
+.guide{
+flex-direction:column;
+}
+.arrow{
+transform:rotate(90deg);
+}
+}
+</style>
+</head>
+<body>
+
+<div id="content"></div>
+
+<script>
+var ua = navigator.userAgent || navigator.vendor || window.opera;
+
+// detect tiktok in-app browser
+var isTikTok =
+ua.includes("TikTok") ||
+ua.includes("TTWebView") ||
+ua.includes("Bytedance");
+
+// nếu mở trong TikTok -> hiện ảnh hướng dẫn
+if(isTikTok){
+
+document.getElementById("content").innerHTML = `
+<div class="guide">
+
+<div class="step">
+<div class="label">Bước 1</div>
+<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775795921147_Jgz42MehCC.jpg">
+</div>
+
+<div class="arrow">➜</div>
+
+<div class="step">
+<div class="label">Bước 2</div>
+<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775796014226_VtpoB8dKgY.jpg">
+</div>
+
+</div>
+`;
+
+}else{
+
+// mở bằng trình duyệt ngoài -> chuyển link
+window.location.replace("https://s.shopee.vn/6L00saZVfm");
+
+}
+</script>
+
+</body>
+</html>
