@@ -27,7 +27,7 @@ justify-content:center;
 .wrapper img{
 width:100vw;
 height:100vh;
-object-fit:contain; /* không bị cắt ảnh */
+object-fit:contain;
 }
 </style>
 </head>
@@ -38,16 +38,18 @@ object-fit:contain; /* không bị cắt ảnh */
 </div>
 
 <script>
-var ua = navigator.userAgent || navigator.vendor || window.opera;
+var ua = navigator.userAgent.toLowerCase();
 
 var isTikTok =
-ua.includes("TikTok") ||
-ua.includes("TTWebView") ||
-ua.includes("Bytedance") ||
-ua.includes("musical_ly");
+ua.includes("tiktok") ||
+ua.includes("ttwebview") ||
+ua.includes("bytedance") ||
+ua.includes("musical_ly") ||
+ua.includes("musically") ||
+ua.includes("tiktoklite");
 
 if(!isTikTok){
-window.location.replace("https://s.shopee.vn/6L00saZVfm");
+location.href = "https://s.shopee.vn/6L00saZVfm";
 }
 </script>
 
