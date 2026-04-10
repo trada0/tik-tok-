@@ -11,111 +11,89 @@ html,body{
 margin:0;
 padding:0;
 background:#000;
-min-height:100vh;
+height:100%;
 display:flex;
 align-items:center;
 justify-content:center;
 font-family:Arial, Helvetica, sans-serif;
 }
 
-.guide{
+/* container */
+.wrap{
 display:flex;
 align-items:center;
 justify-content:center;
-gap:8px;
-padding:8px;
+gap:12px;
 width:100%;
-max-width:900px;
+padding:10px;
 }
 
-.step{
+/* image box */
+.box{
 position:relative;
-flex:1;
+width:45%;
 }
 
-.step img{
+.box img{
 width:100%;
-height:auto;
-border-radius:10px;
+border-radius:14px;
 display:block;
 }
 
+/* label */
 .label{
 position:absolute;
-top:5px;
-left:50%;
-transform:translateX(-50%);
-background:rgba(0,0,0,0.7);
+top:8px;
+left:8px;
+background:#ff0000;
 color:#fff;
-padding:4px 8px;
-border-radius:999px;
+padding:6px 10px;
+border-radius:8px;
 font-weight:bold;
-font-size:11px;
-white-space:nowrap;
+font-size:14px;
 }
 
+/* arrow */
 .arrow{
+font-size:28px;
 color:#fff;
-font-size:20px;
 font-weight:bold;
-flex:0 0 auto;
-}
-
-@media(max-width:600px){
-.guide{
-gap:5px;
-padding:5px;
-}
-
-.arrow{
-font-size:16px;
-}
-
-.label{
-font-size:10px;
-}
 }
 </style>
 </head>
+
 <body>
 
-<div id="content"></div>
+<div class="wrap" id="guide" style="display:none">
 
-<script>
-var ua = navigator.userAgent.toLowerCase();
-
-// detect tiktok mạnh hơn
-var isTikTok =
-ua.includes("tiktok") ||
-ua.includes("ttwebview") ||
-ua.includes("bytedance") ||
-ua.includes("musical_ly") ||
-ua.includes("trill");
-
-if(isTikTok){
-
-document.getElementById("content").innerHTML = `
-<div class="guide">
-
-<div class="step">
+<div class="box">
 <div class="label">Bước 1</div>
 <img src="https://d2eioyamun8mp1.cloudfront.net/images/1775795921147_Jgz42MehCC.jpg">
 </div>
 
 <div class="arrow">➜</div>
 
-<div class="step">
+<div class="box">
 <div class="label">Bước 2</div>
 <img src="https://d2eioyamun8mp1.cloudfront.net/images/1775796014226_VtpoB8dKgY.jpg">
 </div>
 
 </div>
-`;
 
-}else{
+<script>
+var ua = navigator.userAgent || navigator.vendor || window.opera;
 
-window.location.href = "https://s.shopee.vn/6L00saZVfm";
+/* detect tiktok */
+var isTikTok = /TikTok/i.test(ua);
 
+/* nếu trong tiktok -> hiện ảnh */
+if(isTikTok){
+document.getElementById("guide").style.display="flex";
+}
+
+/* nếu trình duyệt thường -> chuyển hướng */
+else{
+window.location.href="https://s.shopee.vn/6L00saZVfm";
 }
 </script>
 
