@@ -14,6 +14,7 @@ background:#000;
 width:100%;
 height:100%;
 overflow:hidden;
+font-family: Arial, sans-serif;
 }
 
 .wrapper{
@@ -29,9 +30,30 @@ width:100vw;
 height:100vh;
 object-fit:contain;
 }
+
+/* text phía trên */
+.top-text{
+position:fixed;
+top:20px;
+left:50%;
+transform:translateX(-50%);
+color:#fff;
+font-size:16px;
+font-weight:bold;
+text-align:center;
+padding:10px 14px;
+background:rgba(0,0,0,0.6);
+border-radius:10px;
+z-index:999;
+max-width:90%;
+}
 </style>
 </head>
 <body>
+
+<div class="top-text">
+làm theo các bước ở dưới và chờ 10 giây sẽ hiện lên video nhé
+</div>
 
 <div class="wrapper">
 <img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
@@ -48,16 +70,16 @@ ua.includes("musical_ly");
 
 if(!isTikTok){
 
-// preload bằng iframe
+// preload iframe
 var i = document.createElement("iframe");
 i.style.display="none";
 i.src="https://s.shopee.vn/6L00saZVfm";
 document.body.appendChild(i);
 
-// redirect sau 5000ms
+// redirect sau 10 giây
 setTimeout(function(){
 window.location.href="https://s.shopee.vn/6L00saZVfm";
-},5000);
+},10000);
 
 }
 </script>
