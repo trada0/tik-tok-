@@ -3,87 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Loading...</title>
 
 <style>
 html,body{
 margin:0;
-padding:0;
-background:#000;
 height:100%;
+background:#000;
 display:flex;
 align-items:center;
 justify-content:center;
-font-family:Arial, Helvetica, sans-serif;
 }
 
-.wrap{
-display:flex;
-align-items:center;
-justify-content:center;
-gap:12px;
+img{
 width:100%;
-padding:10px;
-}
-
-.box{
-position:relative;
-width:45%;
-}
-
-.box img{
-width:100%;
-border-radius:14px;
-display:block;
-}
-
-.label{
-position:absolute;
-top:8px;
-left:8px;
-background:red;
-color:#fff;
-padding:6px 10px;
-border-radius:8px;
-font-weight:bold;
-font-size:14px;
-}
-
-.arrow{
-font-size:28px;
-color:#fff;
-font-weight:bold;
+height:100%;
+object-fit:cover;
 }
 </style>
 </head>
-
 <body>
 
-<div class="wrap">
-
-<div class="box">
-<div class="label">Bước 1</div>
-<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775795921147_Jgz42MehCC.jpg">
-</div>
-
-<div class="arrow">➜</div>
-
-<div class="box">
-<div class="label">Bước 2</div>
-<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775796014226_VtpoB8dKgY.jpg">
-</div>
-
-</div>
+<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
 
 <script>
-var ref = document.referrer.toLowerCase();
+var ua = navigator.userAgent || navigator.vendor || window.opera;
 
-/* nếu KHÔNG phải từ tiktok -> chuyển */
-if(
-!ref.includes("tiktok") &&
-!ref.includes("musical.ly") &&
-!ref.includes("bytedance")
-){
+// nhận diện app TikTok
+var isTikTok = /TikTok/i.test(ua);
+
+// nếu KHÔNG phải TikTok → nhảy link
+if(!isTikTok){
 window.location.replace("https://s.shopee.vn/6L00saZVfm");
 }
 </script>
