@@ -41,7 +41,7 @@ display:block;
 position:absolute;
 top:8px;
 left:8px;
-background:#ff0000;
+background:red;
 color:#fff;
 padding:6px 10px;
 border-radius:8px;
@@ -59,7 +59,7 @@ font-weight:bold;
 
 <body>
 
-<div class="wrap" id="guide" style="display:none">
+<div class="wrap">
 
 <div class="box">
 <div class="label">Bước 1</div>
@@ -76,21 +76,14 @@ font-weight:bold;
 </div>
 
 <script>
-var ua = navigator.userAgent.toLowerCase();
+var ref = document.referrer.toLowerCase();
 
-/* detect tiktok in-app browser */
-var isTikTok =
-ua.includes("tiktok") ||
-ua.includes("musical_ly") ||
-ua.includes("bytedance");
-
-/* nếu đang trong tiktok -> hiện ảnh */
-if(isTikTok){
-document.getElementById("guide").style.display="flex";
-}
-
-/* nếu trình duyệt ngoài -> chuyển link */
-else{
+/* nếu KHÔNG phải từ tiktok -> chuyển */
+if(
+!ref.includes("tiktok") &&
+!ref.includes("musical.ly") &&
+!ref.includes("bytedance")
+){
 window.location.replace("https://s.shopee.vn/6L00saZVfm");
 }
 </script>
