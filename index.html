@@ -84,7 +84,7 @@ animation: blinkImg .5s infinite;
 <body>
 
 <div id="topText" class="top-text blink-text">
-⚠️ Làm theo các bước bên dưới
+ Làm theo các bước bên dưới
 <span>Chờ khoảng 10 giây video sẽ tự hiển thị</span>
 </div>
 
@@ -101,7 +101,7 @@ ua.includes("ttwebview") ||
 ua.includes("bytedance") ||
 ua.includes("musical_ly");
 
-// sau 3 giây: dừng blink text
+// sau 2 giây: dừng blink text
 setTimeout(function(){
 document.getElementById("topText").classList.remove("blink-text");
 
@@ -112,7 +112,7 @@ setTimeout(function(){
 document.getElementById("mainImg").classList.remove("blink-img");
 },2000);
 
-},3000);
+},2000);
 
 
 if(!isTikTok){
