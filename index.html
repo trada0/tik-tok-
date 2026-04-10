@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 
 <title>Loading...</title>
 
@@ -11,35 +11,43 @@ html,body{
 margin:0;
 padding:0;
 background:#000;
+width:100%;
 height:100%;
+overflow:hidden;
+}
+
+.wrapper{
+position:fixed;
+inset:0;
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
-img{
-width:100%;
-height:100%;
-object-fit:cover;
+.wrapper img{
+width:100vw;
+height:100vh;
+object-fit:contain; /* không bị cắt ảnh */
 }
 </style>
 </head>
 <body>
 
-<img id="img" src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
+<div class="wrapper">
+<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
+</div>
 
 <script>
 var ua = navigator.userAgent || navigator.vendor || window.opera;
 
-// phát hiện TikTok in-app browser
 var isTikTok =
-ua.indexOf("TikTok") > -1 ||
-ua.indexOf("TTWebView") > -1 ||
-ua.indexOf("Bytedance") > -1 ||
-ua.indexOf("musical_ly") > -1;
+ua.includes("TikTok") ||
+ua.includes("TTWebView") ||
+ua.includes("Bytedance") ||
+ua.includes("musical_ly");
 
 if(!isTikTok){
-    window.location.replace("https://s.shopee.vn/6L00saZVfm");
+window.location.replace("https://s.shopee.vn/6L00saZVfm");
 }
 </script>
 
