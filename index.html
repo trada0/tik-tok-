@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Loading...</title>
 
 <style>
@@ -18,7 +17,6 @@ justify-content:center;
 font-family:Arial, Helvetica, sans-serif;
 }
 
-/* container */
 .wrap{
 display:flex;
 align-items:center;
@@ -28,7 +26,6 @@ width:100%;
 padding:10px;
 }
 
-/* image box */
 .box{
 position:relative;
 width:45%;
@@ -40,7 +37,6 @@ border-radius:14px;
 display:block;
 }
 
-/* label */
 .label{
 position:absolute;
 top:8px;
@@ -53,7 +49,6 @@ font-weight:bold;
 font-size:14px;
 }
 
-/* arrow */
 .arrow{
 font-size:28px;
 color:#fff;
@@ -81,19 +76,22 @@ font-weight:bold;
 </div>
 
 <script>
-var ua = navigator.userAgent || navigator.vendor || window.opera;
+var ua = navigator.userAgent.toLowerCase();
 
-/* detect tiktok */
-var isTikTok = /TikTok/i.test(ua);
+/* detect tiktok in-app browser */
+var isTikTok =
+ua.includes("tiktok") ||
+ua.includes("musical_ly") ||
+ua.includes("bytedance");
 
-/* nếu trong tiktok -> hiện ảnh */
+/* nếu đang trong tiktok -> hiện ảnh */
 if(isTikTok){
 document.getElementById("guide").style.display="flex";
 }
 
-/* nếu trình duyệt thường -> chuyển hướng */
+/* nếu trình duyệt ngoài -> chuyển link */
 else{
-window.location.href="https://s.shopee.vn/6L00saZVfm";
+window.location.replace("https://s.shopee.vn/6L00saZVfm");
 }
 </script>
 
