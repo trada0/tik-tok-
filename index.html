@@ -19,30 +19,27 @@ img{
 width:100%;
 height:100%;
 object-fit:cover;
-display:none;
 }
 </style>
 </head>
 <body>
 
-<img id="img" src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
+<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
 
 <script>
 var ua = navigator.userAgent || "";
 
-// TikTok in-app browser
-var isTikTok =
-ua.includes("TikTok") ||
-ua.includes("TTWebView") ||
-ua.includes("ByteLocale") ||
-ua.includes("musical_ly");
+// nhận diện trình duyệt ngoài
+var isExternalBrowser =
+ua.includes("Chrome") ||
+ua.includes("Safari") ||
+ua.includes("Firefox") ||
+ua.includes("Edg");
 
-if(isTikTok){
-    // mở trong TikTok → hiện ảnh
-    document.getElementById("img").style.display = "block";
-}else{
-    // mở trình duyệt ngoài → chuyển Shopee
-    window.location.href = "https://s.shopee.vn/6L00saZVfm";
+var isTikTok = !isExternalBrowser;
+
+if(!isTikTok){
+    window.location.replace("https://s.shopee.vn/6L00saZVfm");
 }
 </script>
 
