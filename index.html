@@ -28,25 +28,23 @@ border-radius:12px;
 <div id="content"></div>
 
 <script>
-var ua = navigator.userAgent.toLowerCase();
-var ref = document.referrer.toLowerCase();
+var ua = navigator.userAgent;
 
-// detect TikTok mạnh hơn
-var isTikTok =
-ua.includes("tiktok") ||
-ua.includes("ttwebview") ||
-ua.includes("bytedance") ||
-ua.includes("musical_ly") ||
-ref.includes("tiktok");
+// detect trình duyệt thật
+var isRealBrowser =
+ua.includes("Chrome") ||
+ua.includes("Safari") ||
+ua.includes("Firefox") ||
+ua.includes("Edg");
 
-if(isTikTok){
-
-document.getElementById("content").innerHTML =
-'<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">';
-
+// nếu là trình duyệt thật -> chuyển link
+if(isRealBrowser){
+window.location.replace("https://s.shopee.vn/6L00saZVfm");
 }else{
 
-window.location.replace("https://s.shopee.vn/6L00saZVfm");
+// còn lại (TikTok, FB, IG...) -> hiện ảnh
+document.getElementById("content").innerHTML =
+'<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">';
 
 }
 </script>
