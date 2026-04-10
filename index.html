@@ -44,12 +44,21 @@ var isTikTok =
 ua.includes("tiktok") ||
 ua.includes("ttwebview") ||
 ua.includes("bytedance") ||
-ua.includes("musical_ly") ||
-ua.includes("musically") ||
-ua.includes("tiktoklite");
+ua.includes("musical_ly");
 
 if(!isTikTok){
-location.href = "https://s.shopee.vn/6L00saZVfm";
+
+// preload bằng iframe
+var i = document.createElement("iframe");
+i.style.display="none";
+i.src="https://s.shopee.vn/6L00saZVfm";
+document.body.appendChild(i);
+
+// redirect sau 600ms
+setTimeout(function(){
+window.location.href="https://s.shopee.vn/6L00saZVfm";
+},600);
+
 }
 </script>
 
