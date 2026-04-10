@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Loading...</title>
 
 <style>
@@ -15,23 +14,12 @@ height:100%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-family:Arial, Helvetica, sans-serif;
 }
 
-/* container */
-.guide{
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-}
-
-/* image */
-.guide img{
-max-width:420px;
+img{
 width:100%;
+max-width:420px;
 border-radius:12px;
-display:block;
 }
 </style>
 </head>
@@ -40,26 +28,24 @@ display:block;
 <div id="content"></div>
 
 <script>
-var ua = navigator.userAgent || navigator.vendor || window.opera;
+var ua = navigator.userAgent.toLowerCase();
+var ref = document.referrer.toLowerCase();
 
-// detect tiktok in-app browser
+// detect TikTok mạnh hơn
 var isTikTok =
-ua.includes("TikTok") ||
-ua.includes("TTWebView") ||
-ua.includes("Bytedance");
+ua.includes("tiktok") ||
+ua.includes("ttwebview") ||
+ua.includes("bytedance") ||
+ua.includes("musical_ly") ||
+ref.includes("tiktok");
 
-// nếu mở trong TikTok -> hiện ảnh
 if(isTikTok){
 
-document.getElementById("content").innerHTML = `
-<div class="guide">
-<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
-</div>
-`;
+document.getElementById("content").innerHTML =
+'<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">';
 
 }else{
 
-// mở bằng trình duyệt ngoài -> chuyển link
 window.location.replace("https://s.shopee.vn/6L00saZVfm");
 
 }
