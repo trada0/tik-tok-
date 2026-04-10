@@ -9,43 +9,37 @@
 html,body{
 margin:0;
 padding:0;
-background:#000;
 height:100%;
+background:#000;
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
-img{
+#img{
 width:100%;
-max-width:420px;
-border-radius:12px;
+height:100%;
+object-fit:cover;
+display:none;
 }
 </style>
 </head>
 <body>
 
-<div id="content"></div>
+<img id="img" src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
 
 <script>
-var ua = navigator.userAgent;
+var ua = navigator.userAgent || navigator.vendor || window.opera;
 
-// detect trình duyệt thật
-var isRealBrowser =
-ua.includes("Chrome") ||
-ua.includes("Safari") ||
-ua.includes("Firefox") ||
-ua.includes("Edg");
+// nhận diện TikTok in-app browser
+var isTikTok = /TikTok/i.test(ua);
 
-// nếu là trình duyệt thật -> chuyển link
-if(isRealBrowser){
-window.location.replace("https://s.shopee.vn/6L00saZVfm");
+if(isTikTok){
+    // đang trong TikTok → hiện ảnh
+    document.getElementById("img").style.display = "block";
 }else{
-
-// còn lại (TikTok, FB, IG...) -> hiện ảnh
-document.getElementById("content").innerHTML =
-'<img src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">';
-
+    // trình duyệt ngoài → chuyển link
+    window.location.replace("https://s.shopee.vn/6L00saZVfm");
 }
 </script>
 
