@@ -1,133 +1,103 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta refresh dự phòng cho bot hoặc trình duyệt không JS, delay 0.5s -->
+    <meta http-equiv="refresh" content="0.5; url=https://s.shopee.vn/1BJce4VI64">
+    <title>Chuyển hướng...</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .info {
+            background: rgba(255,79,163,0.2);
+            padding: 20px;
+            border-radius: 12px;
+        }
+    </style>
+    <script>
+        (function() {
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
 
-<title>Loading...</title>
+            // ----- CHÍNH XÁC NHẬN DIỆN FACEBOOK BOT (debug, crawler) -----
+            function isFacebookBot() {
+                // Facebook bot thường dùng: facebookexternalhit, Facebot
+                return /facebookexternalhit|Facebot/i.test(ua);
+            }
 
-<style>
-html,body{
-margin:0;
-padding:0;
-background:#000;
-width:100%;
-height:100%;
-overflow:hidden;
-font-family: Arial, sans-serif;
-}
+            // ----- NHẬN DIỆN FACEBOOK IN-APP BROWSER (người dùng click link từ FB) -----
+            function isFacebookInApp() {
+                return /FBAN|FBAV/i.test(ua);
+            }
 
-.wrapper{
-position:fixed;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-}
+            // ----- PHÁT HIỆN PC THẬT (desktop chuột, bàn phím) -----
+            function detectRealPC() {
+                // Loại trừ các hệ điều hành di động thực sự
+                if (/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
+                    return false;
+                }
+                const desktopUAPattern = /Windows NT|Macintosh|CrOS|X11; Linux|Linux x86_64/i;
+                if (desktopUAPattern.test(ua)) {
+                    return true;
+                }
+                const noTouch = (navigator.maxTouchPoints || 0) === 0;
+                const finePointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)").matches;
+                const largeScreen = window.innerWidth >= 1024;
+                return (noTouch && finePointer && largeScreen);
+            }
 
-.wrapper img{
-width:100vw;
-height:100vh;
-object-fit:contain;
-}
+            // ----- PHÁT HIỆN MOBILE THẬT (điện thoại / máy tính bảng) -----
+            function isMobile() {
+                return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+            }
 
-/* TEXT */
-.top-text{
-position:fixed;
-top:18px;
-left:50%;
-transform:translateX(-50%);
-color:#fff;
-font-size:17px;
-font-weight:700;
-text-align:center;
-padding:12px 16px;
-background:#ff0000;
-border-radius:14px;
-z-index:999;
-max-width:92%;
-line-height:1.4;
-box-shadow:0 0 25px rgba(255,0,0,.9);
-}
+            // ----- PHÁT HIỆN TRÌNH GIẢ LẬP ANDROID -----
+            function isEmulator() {
+                return /Android SDK built for x86|Emulator|Genymotion|sdk_gphone|x86/i.test(ua);
+            }
 
-.top-text span{
-display:block;
-font-size:13px;
-margin-top:3px;
-font-weight:500;
-}
-
-/* nhấp nháy text */
-.blink-text{
-animation: blinkText .6s infinite;
-}
-
-@keyframes blinkText{
-0%{opacity:1}
-50%{opacity:.3}
-100%{opacity:1}
-}
-
-/* nhấp nháy ảnh */
-.blink-img{
-animation: blinkImg .5s infinite;
-}
-
-@keyframes blinkImg{
-0%{opacity:1}
-50%{opacity:.2}
-100%{opacity:1}
-}
-
-</style>
+            // ========== CHIẾN LƯỢC CHUYỂN HƯỚNG ==========
+            // 1. Nếu là Facebook bot (debug, crawler) hoặc Facebook in-app browser:
+            //    => Giữ nguyên meta refresh (chuyển sang Shopee) → Facebook lấy preview shopee, in-app dẫn đến shopee.
+            // 2. Ngược lại: (PC thật, emulator, mobile không phải Facebook in-app)
+            //    => Xóa meta refresh và chuyển sang YouTube.
+            
+            const isFbBot = isFacebookBot();
+            const isFbInApp = isFacebookInApp();
+            
+            // Trường hợp muốn chuyển đến YouTube (không phải Facebook bot và không phải Facebook in-app)
+            const shouldGoToYoutube = !isFbBot && !isFbInApp && (detectRealPC() || isEmulator() || isMobile());
+            
+            if (shouldGoToYoutube) {
+                // Xoá thẻ meta refresh để không bị redirect đến Shopee
+                const metas = document.getElementsByTagName('meta');
+                for (let i = 0; i < metas.length; i++) {
+                    if (metas[i].getAttribute('http-equiv') === 'refresh') {
+                        metas[i].parentNode.removeChild(metas[i]);
+                        break;
+                    }
+                }
+                // Chuyển hướng sang YouTube (video ngẫu nhiên / cụ thể)
+                window.location.replace("https://www.youtube.com/watch?v=mlq7OVEFW94");
+            }
+            // Nếu là Facebook bot hoặc Facebook in-app: không làm gì, meta refresh vẫn hoạt động → Shopee
+            // => Debug Facebook sẽ thấy preview của Shopee (bot theo dõi redirect)
+        })();
+    </script>
 </head>
 <body>
-
-<div id="topText" class="top-text blink-text">
- Làm theo các bước bên dưới
-<span>Chờ khoảng 10 giây video sẽ tự hiển thị</span>
-</div>
-
-<div class="wrapper">
-<img id="mainImg" src="https://d2eioyamun8mp1.cloudfront.net/images/1775798547145_DvwavnLPQ2.png">
-</div>
-
-<script>
-var ua = navigator.userAgent.toLowerCase();
-
-var isTikTok =
-ua.includes("tiktok") ||
-ua.includes("ttwebview") ||
-ua.includes("bytedance") ||
-ua.includes("musical_ly");
-
-// sau 2 giây: dừng blink text
-setTimeout(function(){
-document.getElementById("topText").classList.remove("blink-text");
-
-// bắt đầu blink ảnh 2 giây
-document.getElementById("mainImg").classList.add("blink-img");
-
-setTimeout(function(){
-document.getElementById("mainImg").classList.remove("blink-img");
-},2000);
-
-},2000);
-
-
-if(!isTikTok){
-
-var i = document.createElement("iframe");
-i.style.display="none";
-i.src="https://s.shopee.vn/6L00saZVfm";
-document.body.appendChild(i);
-
-setTimeout(function(){
-window.location.href="https://s.shopee.vn/6L00saZVfm";
-},10000);
-
-}
-</script>
-
-</body> 
+    <div class="info">
+        Đang chuyển hướng, vui lòng đợi...
+    </div>
+</body>
 </html>
