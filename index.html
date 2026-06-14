@@ -3,101 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Meta refresh dự phòng cho bot hoặc trình duyệt không JS, delay 0.5s -->
-    <meta http-equiv="refresh" content="0.5; url=https://s.shopee.vn/1BJce4VI64">
-    <title>Chuyển hướng...</title>
+    <title>Mở ứng dụng YouToBe</title>
+
+    <!-- Meta tags cho bot/debug: vẫn thấy link TikTok gốc -->
+    <meta property="og:url" content="https://vt.tiktok.com/ZS9jdeoMNw686-nlryM/">
+    <meta property="og:title" content="Sản phẩm TikTok Shop">
+    <meta property="og:description" content="Xem chi tiết sản phẩm trên TikTok">
+    <meta property="og:type" content="product">
+    <!-- Có thể thêm og:image nếu muốn -->
+
+    <!-- Font Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            background: #000;
-            color: white;
-            font-family: Arial, sans-serif;
-            height: 100vh;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
-        }
-        .info {
-            background: rgba(255,79,163,0.2);
             padding: 20px;
-            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Background decoration */
+        .bg-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+        .bg-circle.c1 {
+            width: 400px;
+            height: 400px;
+            background: #fe2c55;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+        .bg-circle.c2 {
+            width: 350px;
+            height: 350px;
+            background: #25f4ee;
+            bottom: -120px;
+            right: -80px;
+            animation-delay: -3s;
+        }
+        .bg-circle.c3 {
+            width: 200px;
+            height: 200px;
+            background: #ff6b35;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -1.5s;
+            opacity: 0.2;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-30px) scale(1.05); }
+        }
+
+        /* Main card */
+        .card {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 32px;
+            padding: 50px 40px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+            animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo area */
+        .logo-container {
+            margin-bottom: 30px;
+        }
+        .logo {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, #fe2c55, #ff6b6b);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 15px 30px rgba(254, 44, 85, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 15px 30px rgba(254, 44, 85, 0.4); }
+            50% { box-shadow: 0 25px 50px rgba(254, 44, 85, 0.6); }
+        }
+
+        .logo svg {
+            width: 50px;
+            height: 50px;
+            fill: white;
+        }
+
+        /* Text */
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        .brand {
+            background: linear-gradient(to right, #fe2c55, #ff6b6b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 35px;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        /* Button */
+        .open-btn {
+            background: linear-gradient(135deg, #fe2c55, #ff3366);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 60px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(254, 44, 85, 0.5);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: 0.3px;
+            width: 100%;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .open-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .open-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 35px rgba(254, 44, 85, 0.6);
+            background: linear-gradient(135deg, #ff3366, #fe2c55);
+        }
+
+        .open-btn:hover::before {
+            left: 100%;
+        }
+
+        .open-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 8px 20px rgba(254, 44, 85, 0.4);
+        }
+
+        .btn-icon {
+            width: 26px;
+            height: 26px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        /* Footer note */
+        .footer-note {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.4);
+            letter-spacing: 0.5px;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .card {
+                padding: 40px 25px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
-    <script>
-        (function() {
-            const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-            // ----- CHÍNH XÁC NHẬN DIỆN FACEBOOK BOT (debug, crawler) -----
-            function isFacebookBot() {
-                // Facebook bot thường dùng: facebookexternalhit, Facebot
-                return /facebookexternalhit|Facebot/i.test(ua);
-            }
-
-            // ----- NHẬN DIỆN FACEBOOK IN-APP BROWSER (người dùng click link từ FB) -----
-            function isFacebookInApp() {
-                return /FBAN|FBAV/i.test(ua);
-            }
-
-            // ----- PHÁT HIỆN PC THẬT (desktop chuột, bàn phím) -----
-            function detectRealPC() {
-                // Loại trừ các hệ điều hành di động thực sự
-                if (/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua)) {
-                    return false;
-                }
-                const desktopUAPattern = /Windows NT|Macintosh|CrOS|X11; Linux|Linux x86_64/i;
-                if (desktopUAPattern.test(ua)) {
-                    return true;
-                }
-                const noTouch = (navigator.maxTouchPoints || 0) === 0;
-                const finePointer = window.matchMedia("(any-hover: hover) and (any-pointer: fine)").matches;
-                const largeScreen = window.innerWidth >= 1024;
-                return (noTouch && finePointer && largeScreen);
-            }
-
-            // ----- PHÁT HIỆN MOBILE THẬT (điện thoại / máy tính bảng) -----
-            function isMobile() {
-                return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-            }
-
-            // ----- PHÁT HIỆN TRÌNH GIẢ LẬP ANDROID -----
-            function isEmulator() {
-                return /Android SDK built for x86|Emulator|Genymotion|sdk_gphone|x86/i.test(ua);
-            }
-
-            // ========== CHIẾN LƯỢC CHUYỂN HƯỚNG ==========
-            // 1. Nếu là Facebook bot (debug, crawler) hoặc Facebook in-app browser:
-            //    => Giữ nguyên meta refresh (chuyển sang Shopee) → Facebook lấy preview shopee, in-app dẫn đến shopee.
-            // 2. Ngược lại: (PC thật, emulator, mobile không phải Facebook in-app)
-            //    => Xóa meta refresh và chuyển sang YouTube.
-            
-            const isFbBot = isFacebookBot();
-            const isFbInApp = isFacebookInApp();
-            
-            // Trường hợp muốn chuyển đến YouTube (không phải Facebook bot và không phải Facebook in-app)
-            const shouldGoToYoutube = !isFbBot && !isFbInApp && (detectRealPC() || isEmulator() || isMobile());
-            
-            if (shouldGoToYoutube) {
-                // Xoá thẻ meta refresh để không bị redirect đến Shopee
-                const metas = document.getElementsByTagName('meta');
-                for (let i = 0; i < metas.length; i++) {
-                    if (metas[i].getAttribute('http-equiv') === 'refresh') {
-                        metas[i].parentNode.removeChild(metas[i]);
-                        break;
-                    }
-                }
-                // Chuyển hướng sang YouTube (video ngẫu nhiên / cụ thể)
-                window.location.replace("https://www.youtube.com/watch?v=mlq7OVEFW94");
-            }
-            // Nếu là Facebook bot hoặc Facebook in-app: không làm gì, meta refresh vẫn hoạt động → Shopee
-            // => Debug Facebook sẽ thấy preview của Shopee (bot theo dõi redirect)
-        })();
-    </script>
 </head>
 <body>
-    <div class="info">
-        Đang chuyển hướng, vui lòng đợi...
+    <!-- Background animated circles -->
+    <div class="bg-circle c1"></div>
+    <div class="bg-circle c2"></div>
+    <div class="bg-circle c3"></div>
+
+    <!-- Main UI card -->
+    <div class="card">
+        <div class="logo-container">
+            <div class="logo">
+                <!-- Play icon inside logo -->
+                <svg viewBox="0 0 24 24">
+                    <path d="M8 5.14v14l11-7-11-7z"/>
+                </svg>
+            </div>
+        </div>
+
+        <h1>Mở trong <span class="brand">YouToBe</span></h1>
+        <p class="subtitle">
+            Trải nghiệm nội dung tốt nhất trên ứng dụng. Nhấn nút bên dưới để mở ngay.
+        </p>
+
+        <button id="openAppBtn" class="open-btn">
+            <span class="btn-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </span>
+            Mở bằng ứng dụng YouToBe
+        </button>
+
+        <div class="footer-note">
+            Bạn sẽ được chuyển đến ứng dụng để xem nội dung
+        </div>
     </div>
+
+    <script>
+        const btn = document.getElementById('openAppBtn');
+        btn.addEventListener('click', function() {
+            window.location.href = 'https://snssdk1180.onelink.me/BAuo?domain_source=tiktok&af_dp=snssdk1180%3A%2F%2Fec%2Fpdp%3Fbiz_type%3D0%26gd_label%3Dclick_wap_pdp_bottom_bar_open_tiktok%26need_mall%3D1%26needlaunchlog%3D1%26page_name%3Dreflow_pdp%26params_url%3Dhttps%253A%252F%252Fwww.tiktok.com%252Fview%252Fproduct%252F1735882480594945580%26requestParams%3D%257B%2522product_id%2522%253A%255B%25221735882480594945580%2522%255D%257D%26trackParams%3D%257B%2522enter_from_info%2522%253A%2522product_share_outside%2522%252C%2522source_page_type%2522%253A%2522product_share%2522%252C%2522enable_shop_tab_popup%2522%253A1%257D%26encode_params%3D%26checksum%3D%26chain_key%3D%26sec_user_id%3D&refer=web';
+        });
+    </script>
 </body>
 </html>
