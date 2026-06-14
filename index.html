@@ -1,16 +1,58 @@
-<!DOCTYPE html>
+// Cloudflare Worker - Redirect bot, người thật thấy nút bấm
+export default {
+  async fetch(request, env, ctx) {
+    // Lấy User-Agent từ request
+    const userAgent = request.headers.get('User-Agent') || '';
+    
+    // Danh sách bot cần redirect sang TikTok
+    const botPatterns = [
+      'facebookexternalhit',
+      'Facebot',
+      'Twitterbot',
+      'TelegramBot',
+      'Discordbot',
+      'Slackbot',
+      'WhatsApp',
+      'LinkedInBot',
+      'Pinterest',
+      'redditbot',
+      'Viber',
+      'Line',
+      'Zalo',
+      'Googlebot',
+      'Bingbot',
+      'Baiduspider',
+      'YandexBot',
+      'DuckDuckBot',
+      'Applebot',
+      'Iframely',
+      'Embedly',
+      'SkypeUriPreview'
+    ];
+    
+    const tiktokURL = 'https://vt.tiktok.com/ZS9jdeoMNw686-nlryM/';
+    const isBot = botPatterns.some(pattern => 
+      userAgent.toLowerCase().includes(pattern.toLowerCase())
+    );
+    
+    // Nếu là bot → Redirect sang TikTok
+    if (isBot) {
+      return Response.redirect(tiktokURL, 302);
+    }
+    
+    // Nếu là người thật → Trả về giao diện HTML
+    const html = `<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mở ứng dụng YouToBe</title>
 
-    <!-- Meta tags cho bot/debug: vẫn thấy link TikTok gốc -->
-    <meta property="og:url" content="https://vt.tiktok.com/ZS9jdeoMNw686-nlryM/">
+    <!-- Meta tags cho bot (dự phòng nếu bot không bị redirect) -->
+    <meta property="og:url" content="${tiktokURL}">
     <meta property="og:title" content="Sản phẩm TikTok Shop">
     <meta property="og:description" content="Xem chi tiết sản phẩm trên TikTok">
     <meta property="og:type" content="product">
-    <!-- Có thể thêm og:image nếu muốn -->
 
     <!-- Font Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -282,4 +324,13 @@
         });
     </script>
 </body>
-</html>
+</html>`;
+
+    return new Response(html, {
+      headers: {
+        'Content-Type': 'text/html; charset=UTF-8',
+        'Cache-Control': 'public, max-age=3600'
+      }
+    });
+  }
+};
